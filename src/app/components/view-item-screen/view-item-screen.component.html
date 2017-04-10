@@ -1,17 +1,37 @@
-<div class="view-screen-background" (click)="hide()">
-  <div class="view-screen-mainbox">
-    <div class="change-task-card">
-      <div *ngIf="cardType === ct">
-        <div class="task-name">{{ctAccess.getCTProp('name')}}</div>
-        <div class="task-status">{{ctAccess.getCTProp('status')}}</div>
-        <div class="task-project-number">{{ctAccess.getCTProp('project')}}</div>
-      </div>      
-    </div>
-        <div class="project-screen-card">
-      <!-- If type === project -->
+<div class="background">
+</div>
+<div class="view-screen-background">
+  <div class="view-screen-mainbox">    
+    <div *ngIf='_cardType === "ct"'class="task-card">
+      <h3 class="task-name">{{_ct_getProp('name')}}</h3>       
+      Status:
+      <select class="status-list list-item" [(ngModel)]="ct.status">
+          <option *ngFor="let status of _ds.swimLanesList" ngDefaultControl>{{status}}</option>
+      </select>
+      Owner:
+      <select class="owner-list list-item" (ngModel)="ct.owner" [(ngModel)]="getUser(ct.owner, _ds.ownersList).username">
+          <option *ngFor="let owner of _ds.ownersList" ngDefaultControl>{{owner.username}}</option>
+      </select>
+      Project:
+      <select class="project-list list-item" (ngModel)="ct.project" [(ngModel)]="getProject(ct.project, _ds.projectList).name">
+          <option *ngFor="let project of _ds.projectList" ngDefaultControl>{{project.name}}</option>
+      </select>     
+    </div>   
+
+    <div *ngIf='_cardType === "p"' class="task-card">
+      <h1>{{_p_getProp('name')}}</h1>
+      <h5>Children:</h5>
+      <ul>
+        <li *ngFor="let child of _p_getProp('children')">
+          {{_keyConverter.getTask(child, _ds.cardList).name}}
+        </li>
+      </ul>
+      
     </div>
     <div class="user-profile-card">
       <!-- If type === user -->
     </div>
+    <input type="button" value="Close" (click)="hide()">
   </div>
 </div>
+

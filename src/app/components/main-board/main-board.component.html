@@ -1,23 +1,17 @@
-<input type="button" value="View" (click)="view()">
+<img src="../../assets/images/logo-header.jpg">
 <div class="main-board">
   <div *ngFor="let SL of swimLanesList" class="swim-lane">
-    {{SL}}
-    <div *ngFor="let itemCard of cardList">
+    <b><div class="swim-lane-header">{{SL}}</div></b>
+    <div *ngFor="let itemCard of ds.cardList">
       <!-- Card Element -->
       <div class="card-wrapper" *ngIf="itemCard.status === SL">
         <div  class="card-item">
           {{itemCard.name}}
         </div>
-        <select class="status-list" (change)="logOptions(itemCard)" [(ngModel)]="itemCard.status">
-          <option *ngFor="let status of swimLanesList" ngDefaultControl>{{status}}</option>
-        </select>
-        <select class="owner-list" (change)="logOptions(itemCard)" (ngModel)="itemCard.owner" [ngModel]="getUsername(itemCard.owner, ownersList)">
-          <option *ngFor="let owner of ownersList" ngDefaultControl>{{owner.username}}</option>
-        </select>
-        <select class="project-list" (change)="logOptions(itemCard)" (ngModel)="itemCard.project" [ngModel]="getProjectName(itemCard.project, projectList)">
-          <option *ngFor="let project of projectList" ngDefaultControl>{{project.name}}</option>
-        </select>
-        <input type="button" class="view-project" value="View" (click)="viewTask(getTask(itemCard.id, cardList))"> 
+        Status: <div class="button form-item"> {{itemCard.status}} </div><br>
+        Owner: <div class="button form-item"> {{getUser(itemCard.owner, ownersList).username}}</div><br>
+        Project: <div class="button form-item" (click)="_ViewItemScreenComponent.p_openTask(getProject(itemCard.project, projectList))">{{getProject(itemCard.project, projectList).name}}</div><br>
+        <div class="button form-item" (click)="_ViewItemScreenComponent.ct_openTask(itemCard)"> View / Edit Task </div>
       </div>
       <!-- End Of Card -->
     </div>

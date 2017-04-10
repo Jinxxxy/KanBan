@@ -4,7 +4,7 @@ import {brd} from './brd.model'
 export class projectModel{
     name: string;
     projectId: number;
-    children: Array<cardItem> = [];
+    children: Array<number> = [];
     targetCompletionDate: Date;
     creationDate: Date;
     actualCompletionDate: Date;

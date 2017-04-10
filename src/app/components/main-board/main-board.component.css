@@ -2,16 +2,15 @@
     height: 100vh;
     display: inline-block;
     padding: 5px;
-    border: 2px solid orange;
+    border: 3px solid #6f397f;
+    border-radius: 5px/5px;
     margin: 5px;
     vertical-align: top;
     max-width: 25%;
+    text-align: center;
+    background-color: #e3e9ec;
 }
 .status-list{
-    margin: 2.5px;
-}
-.card-item{
-    border: 1px solid black;
     margin: 2.5px;
 }
 .main-board{
@@ -19,10 +18,19 @@
     align-self: flex-start;
 }
 .card-wrapper{
-    border: 1px solid black;
+    border: 2px solid #f08b1e;
     border-radius: 5px/5px;
     margin: 2.5px;
+    padding: 2px;
+    text-align: left;
+    background-color: white;
 }
 .view-project{
     margin: 2.5px;
+}
+.form-item{
+    margin: 2.5px;
+}
+.swim-lane-header{
+    border-bottom: 3px solid #6f397f;    
 }
