@@ -1,0 +1,25 @@
+<input type="button" value="View" (click)="view()">
+<div class="main-board">
+  <div *ngFor="let SL of swimLanesList" class="swim-lane">
+    {{SL}}
+    <div *ngFor="let itemCard of cardList">
+      <!-- Card Element -->
+      <div class="card-wrapper" *ngIf="itemCard.status === SL">
+        <div  class="card-item">
+          {{itemCard.name}}
+        </div>
+        <select class="status-list" (change)="logOptions(itemCard)" [(ngModel)]="itemCard.status">
+          <option *ngFor="let status of swimLanesList" ngDefaultControl>{{status}}</option>
+        </select>
+        <select class="owner-list" (change)="logOptions(itemCard)" (ngModel)="itemCard.owner" [ngModel]="getUsername(itemCard.owner, ownersList)">
+          <option *ngFor="let owner of ownersList" ngDefaultControl>{{owner.username}}</option>
+        </select>
+        <select class="project-list" (change)="logOptions(itemCard)" (ngModel)="itemCard.project" [ngModel]="getProjectName(itemCard.project, projectList)">
+          <option *ngFor="let project of projectList" ngDefaultControl>{{project.name}}</option>
+        </select>
+        <input type="button" class="view-project" value="View" (click)="viewTask(getTask(itemCard.id, cardList))"> 
+      </div>
+      <!-- End Of Card -->
+    </div>
+  </div>
+</div>

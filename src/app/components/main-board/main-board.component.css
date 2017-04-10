@@ -1,0 +1,28 @@
+.swim-lane{
+    height: 100vh;
+    display: inline-block;
+    padding: 5px;
+    border: 2px solid orange;
+    margin: 5px;
+    vertical-align: top;
+    max-width: 25%;
+}
+.status-list{
+    margin: 2.5px;
+}
+.card-item{
+    border: 1px solid black;
+    margin: 2.5px;
+}
+.main-board{
+    justify-content: space-between;
+    align-self: flex-start;
+}
+.card-wrapper{
+    border: 1px solid black;
+    border-radius: 5px/5px;
+    margin: 2.5px;
+}
+.view-project{
+    margin: 2.5px;
+}

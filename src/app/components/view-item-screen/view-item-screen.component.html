@@ -1,0 +1,17 @@
+<div class="view-screen-background" (click)="hide()">
+  <div class="view-screen-mainbox">
+    <div class="change-task-card">
+      <div *ngIf="cardType === ct">
+        <div class="task-name">{{ctAccess.getCTProp('name')}}</div>
+        <div class="task-status">{{ctAccess.getCTProp('status')}}</div>
+        <div class="task-project-number">{{ctAccess.getCTProp('project')}}</div>
+      </div>      
+    </div>
+        <div class="project-screen-card">
+      <!-- If type === project -->
+    </div>
+    <div class="user-profile-card">
+      <!-- If type === user -->
+    </div>
+  </div>
+</div>
