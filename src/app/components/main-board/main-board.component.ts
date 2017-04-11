@@ -63,6 +63,7 @@ export class MainBoardComponent implements OnInit {
     this.ds.projectList.push(projThree);
     ViewItemScreenComponent._ds = dataStore;
     AddNewScreenComponent.ds = dataStore;
+    console.log(JSON.stringify(this.ds.cardList))
   }
 
   ngOnInit() {
