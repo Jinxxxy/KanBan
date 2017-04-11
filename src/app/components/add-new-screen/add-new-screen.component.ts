@@ -15,6 +15,7 @@ export class AddNewScreenComponent implements OnInit {
   public project: string;
   public owner: string;
   public _ds = AddNewScreenComponent.ds;
+  public fullDescription: string;
   public static makeVisible(){
     AddNewScreenComponent.visible = true;
   }
@@ -29,6 +30,7 @@ export class AddNewScreenComponent implements OnInit {
       1,
       "Awaiting Approval"
       );
+      _addNew.description = this.fullDescription;
       _ds.cardList.push(_addNew);
       //When DB is connected up then change the below to 
       //tear down the screen after the network call has returned

@@ -4,18 +4,21 @@
 <div class="window-background">
   <div class="add-new-window">
     <div>
-      Add a new piece:
+     <h4> Add a new piece </h4>
     </div>
+    Short Description:<br>
     <input type="text" class="add-new-name" [(ngModel)]="name"><br>
-      Project:
+      Project:<br>
     <select [(ngModel)]="project">
       <option *ngFor="let project of _ds.projectList">{{project.name}}</option>
-    </select>
-      User:
-      <select #ownerOption [(ngModel)]="owner">
+    </select><br>
+      User:<br>
+      <select ownerOption [(ngModel)]="owner">
         <option *ngFor="let owner of _ds.ownersList">{{owner.username}}</option>
-      </select>  
-      <input type="button" value="Add it" (click)="addNewItem(_ds)">
-  </div>
-  <input type="button" value="Close" (click)="tearDown()">
+      </select><br>
+      Full Description:<br>
+      <textarea name="Text1" cols="40" rows="5" [(ngModel)]="fullDescription"></textarea><br>
+      <input type="button" value="Add it" (click)="addNewItem(_ds)"><br>
+      <input type="button" value="Close" (click)="tearDown()"><br>
+  </div>  
 </div>

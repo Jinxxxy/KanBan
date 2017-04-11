@@ -15,7 +15,8 @@
       Project:
       <select class="project-list list-item" (ngModel)="ct.project" [(ngModel)]="getProject(ct.project, _ds.projectList).name">
           <option *ngFor="let project of _ds.projectList" ngDefaultControl>{{project.name}}</option>
-      </select>     
+      </select><br>  
+       Description: <br><textarea name="Text1" cols="40" rows="5" [(ngModel)]="ct.description"></textarea>   
     </div>   
 
     <div *ngIf='_cardType === "p"' class="task-card">
