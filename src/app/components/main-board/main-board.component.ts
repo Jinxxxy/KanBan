@@ -43,6 +43,7 @@ export class MainBoardComponent implements OnInit {
     var tempOne: cardItem = new cardItem(1,"Change TCS Config - Testing how this will affect the swim lane width", 1, 1, "Awaiting Development");
     var tempTwo: cardItem = new cardItem(2,"Change DLR Config", 1, 2, "In Testing");
     var tempThree: cardItem = new cardItem(3,"Change DCS Config", 1, 3, "Awaiting Approval");
+    tempOne.description = "FULLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL"
     this.ds.cardList.push(tempOne);
     this.ds.cardList.push(tempTwo);
     this.ds.cardList.push(tempThree);

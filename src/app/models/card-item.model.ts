@@ -6,6 +6,7 @@ export class cardItem{
     public dateCreated: Date;
     public dateCompleted: Date;
     public status: string;
+    public description: string;
     constructor(_id: number, _name: string, _project: number, _owner: number, _status: string){
         this.id = _id;
         this.name = _name;
