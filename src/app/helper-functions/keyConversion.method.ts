@@ -10,9 +10,13 @@ export class keyConverter{
         return getUserProfile;
     };
     public static getProject(_id: number, projectList: Array<projectModel>): projectModel{
+        console.log(_id)
+        console.log(projectList)
         var getProjectModel: projectModel = projectList.filter((proj: projectModel)=>{
-        return proj.projectId === _id
+            return proj.projectId === _id
         })[0];
+        console.log(getProjectModel)
+
         return getProjectModel;
     };
     public static getTask(_id: number, cardList: Array<cardItem>): cardItem{

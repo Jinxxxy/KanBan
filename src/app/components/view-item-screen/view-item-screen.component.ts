@@ -48,7 +48,10 @@ export class ViewItemScreenComponent implements OnInit {
     }        
   }
   //External - Project
-  public static p_openTask(_project: projectModel):void{
+  public static p_openProject(_project: projectModel):void{
+    if(ViewItemScreenComponent.visible === true){
+      ViewItemScreenComponent.clearDown();
+    }
     ViewItemScreenComponent.visibleProject = _project;
     ViewItemScreenComponent.cardType = "p";    
     ViewItemScreenComponent.visible = true;    
@@ -60,6 +63,22 @@ export class ViewItemScreenComponent implements OnInit {
         return "";
       } 
   }
+  //Extenal - getUser
+  public static u_openUser(_user: userProfile):void{
+    if(ViewItemScreenComponent.visible === true){
+      ViewItemScreenComponent.clearDown();
+    }
+    ViewItemScreenComponent.visibleUser = _user;
+    ViewItemScreenComponent.cardType = "u";    
+    ViewItemScreenComponent.visible = true; 
+  }
+  public static u_getProp(_propertyName: string): any{
+      try{
+        return ViewItemScreenComponent.visibleUser[_propertyName];
+      } catch(err){
+        return "";
+      } 
+  }
 
   public ct = ViewItemScreenComponent.visibleChangeTask;
   public _cardType = ViewItemScreenComponent.cardType;
@@ -67,8 +86,11 @@ export class ViewItemScreenComponent implements OnInit {
   public _ct_openTask = ViewItemScreenComponent.ct_openTask;    
   public _ct_getProp = ViewItemScreenComponent.ct_getProp;
   //Internal - P
-  public _p_openTask = ViewItemScreenComponent.p_openTask;
+  public _p_openProject = ViewItemScreenComponent.p_openProject;
   public _p_getProp = ViewItemScreenComponent.p_getProp;
+  //Internal - U
+  public _u_openUser = ViewItemScreenComponent.u_openUser;
+  public _u_getProp = ViewItemScreenComponent.u_getProp;
   //Internal - Generic  
   public _ds = ViewItemScreenComponent._ds;
 

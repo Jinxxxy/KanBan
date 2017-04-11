@@ -28,8 +28,8 @@
       </ul>
       
     </div>
-    <div class="user-profile-card">
-      <!-- If type === user -->
+    <div *ngIf="_cardType === 'u'" class="task-card">
+      <h5>{{_u_getProp('username')}}</h5>
     </div>
     <input type="button" value="Close" (click)="hide()">
   </div>

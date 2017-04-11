@@ -5,6 +5,7 @@ import {projectModel} from '../../Models/project.model'
 import {keyConverter} from '../../helper-functions/keyConversion.method'
 import {ViewItemScreenComponent} from '../view-item-screen/view-item-screen.component'
 import {dataStore} from '../../service-layer/dataStore.service'
+import {AddNewScreenComponent} from '../add-new-screen/add-new-screen.component'
 
 @Component({
   selector: 'app-main-board',
@@ -18,6 +19,7 @@ export class MainBoardComponent implements OnInit {
   private ownersList: Array<userProfile> = dataStore.ownersList;
   private projectList: Array<projectModel> = dataStore.projectList;
   public _ViewItemScreenComponent = ViewItemScreenComponent;
+  public _addNew = AddNewScreenComponent;
   public ds = dataStore;
 
   //Dev Functions
@@ -59,7 +61,8 @@ export class MainBoardComponent implements OnInit {
     this.ds.projectList.push(projOne);
     this.ds.projectList.push(projTwo);
     this.ds.projectList.push(projThree);
-    ViewItemScreenComponent._ds = dataStore
+    ViewItemScreenComponent._ds = dataStore;
+    AddNewScreenComponent.ds = dataStore;
   }
 
   ngOnInit() {

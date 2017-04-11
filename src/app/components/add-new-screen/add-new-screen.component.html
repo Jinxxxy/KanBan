@@ -1,0 +1,21 @@
+<div class="add-new-background">
+
+</div>
+<div class="window-background">
+  <div class="add-new-window">
+    <div>
+      Add a new piece:
+    </div>
+    <input type="text" class="add-new-name" [(ngModel)]="name"><br>
+      Project:
+    <select [(ngModel)]="project">
+      <option *ngFor="let project of _ds.projectList">{{project.name}}</option>
+    </select>
+      User:
+      <select #ownerOption (change)="log(ownerOptions)"[(ngModel)]="owner">
+        <option *ngFor="let owner of _ds.ownersList">{{owner.username}}</option>
+      </select>  
+      <input type="button" value="Add it" (click)="log(name)">
+  </div>
+  <input type="button" value="Close" (click)="tearDown()">
+</div>

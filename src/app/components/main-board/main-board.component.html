@@ -1,4 +1,5 @@
 <img src="../../assets/images/logo-header.jpg">
+<input type="button" value="Add New Piece" (click)="_addNew.makeVisible()">
 <div class="main-board">
   <div *ngFor="let SL of swimLanesList" class="swim-lane">
     <b><div class="swim-lane-header">{{SL}}</div></b>
@@ -9,8 +10,8 @@
           {{itemCard.name}}
         </div>
         Status: <div class="button form-item"> {{itemCard.status}} </div><br>
-        Owner: <div class="button form-item"> {{getUser(itemCard.owner, ownersList).username}}</div><br>
-        Project: <div class="button form-item" (click)="_ViewItemScreenComponent.p_openTask(getProject(itemCard.project, projectList))">{{getProject(itemCard.project, projectList).name}}</div><br>
+        Owner: <div class="button form-item" (click)="_ViewItemScreenComponent.u_openUser(getUser(itemCard.owner, ownersList))"> {{getUser(itemCard.owner, ownersList).username}}</div><br>
+        Project: <div class="button form-item" (click)="_ViewItemScreenComponent.p_openProject(getProject(itemCard.project, projectList))">{{getProject(itemCard.project, projectList).name}}</div><br>
         <div class="button form-item" (click)="_ViewItemScreenComponent.ct_openTask(itemCard)"> View / Edit Task </div>
       </div>
       <!-- End Of Card -->
