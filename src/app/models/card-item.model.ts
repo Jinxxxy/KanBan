@@ -6,12 +6,15 @@ export class cardItem{
     public dateCreated: Date;
     public dateCompleted: Date;
     public status: string;
+    public lastModifiedDate: Date;
+    public lastModifiedBy: number;
     public description: string;
+
     constructor(_id: number, _name: string, _project: number, _owner: number, _status: string){
         this.id = _id;
         this.name = _name;
         this.project = _project;
         this.owner = _owner; 
-        this.status = _status
+        this.status = _status;
     }
 }
