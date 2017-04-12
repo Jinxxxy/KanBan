@@ -2,13 +2,16 @@ import { Component, OnInit } from '@angular/core';
 import {cardItem} from '../../Models/card-item.model';
 import {dataStore} from '../../service-layer/datastore.service';
 import {dbAndDataMethods} from '../../helper-functions/database-and-id-methods.method'
+import {getData} from '../../service-layer/inout/getData.service';
 
 @Component({
   selector: 'app-add-new-screen',
   templateUrl: './add-new-screen.component.html',
-  styleUrls: ['./add-new-screen.component.css', '../../../assets/css/skeleton.css']
+  styleUrls: ['./add-new-screen.component.css', '../../../assets/css/skeleton.css'], 
+  
 })
 export class AddNewScreenComponent implements OnInit {
+  public _getData: getData;
   public static visible: boolean = false;
   public static ds: dataStore;
   public name: string;
