@@ -31,9 +31,9 @@
       
     </div>
     <div *ngIf="_cardType === 'u'" class="task-card">
-      <h6>Username:</h6> <h5>{{_u_getProp('username')}}</h5>
-      <h6>Full Name:</h6> <h5>{{_u_getProp('fullName')}}</h5>
-      <h6>User ID:</h6> <h5>{{_u_getProp('userId')}}</h5>
+      <h6>Username:</h6> <h5>{{_u_getProp("username")}}</h5>
+      <h6>Full Name:</h6> <h5>{{_u_getProp("fullName")}}</h5>
+      <h6>User ID:</h6> <h5>{{_u_getProp("userId")}}</h5>
     </div>
     <input type="button" value="Close" (click)="hide()">
   </div>
