@@ -3,20 +3,21 @@
 <div class="view-screen-background">
   <div class="view-screen-mainbox">    
     <div *ngIf='_cardType === "ct"'class="task-card">
-      <h3 class="task-name">{{_ct_getProp('name')}}</h3>       
+      <div class="list-item">{{_ct_getProp('name')}}</div>       
       Status:
       <select class="status-list list-item" [(ngModel)]="ct.status">
           <option *ngFor="let status of _ds.swimLanesList" ngDefaultControl>{{status}}</option>
-      </select>
+      </select><br>
       Owner:
       <select class="owner-list list-item" (ngModel)="ct.owner" [(ngModel)]="getUser(ct.owner, _ds.ownersList).username">
           <option *ngFor="let owner of _ds.ownersList" ngDefaultControl>{{owner.username}}</option>
-      </select>
+      </select><br>
       Project:
       <select class="project-list list-item" (ngModel)="ct.project" [(ngModel)]="getProject(ct.project, _ds.projectList).name">
           <option *ngFor="let project of _ds.projectList" ngDefaultControl>{{project.name}}</option>
-      </select><br>  
-       Description: <br><textarea name="Text1" cols="40" rows="5" [(ngModel)]="ct.description"></textarea>   
+      </select>
+      <br>  
+       Description: <br><br><textarea name="Text1" cols="40" rows="5" [(ngModel)]="ct.description"></textarea>   
     </div>   
 
     <div *ngIf='_cardType === "p"' class="task-card">
