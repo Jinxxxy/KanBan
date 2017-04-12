@@ -20,7 +20,7 @@
        Description: <br><textarea name="Text1" cols="40" rows="5" [ngModel]="ct.description">  
    </div>   
 
-    <div *ngIf='_cardType === "p"' class="task-card">
+    <div *ngIf="_cardType === 'p'" class="task-card">
       <h1>{{_p_getProp('name')}}</h1>
       <h5>Children:</h5>
       <ul>
