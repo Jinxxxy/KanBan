@@ -32,9 +32,9 @@ export class dataStore{
     public static swimLanesList: Array<string>;
     public static teamList: Array<team> = [];
     public static setPrototypeExtensions(){
-        Array.prototype.oPush = function(_value){
-            alert('Saving The Data...')
-            return this.push(_value);
-        }
+        // Array.prototype.oPush = function(_value){
+        //     alert('Saving The Data...')
+        //     return this.push(_value);
+        // }
     }
 }

@@ -4,11 +4,13 @@ import {projectModel} from '../../models/project.model';
 import {userProfile} from '../../models/owners.model';
 import {keyConverter} from '../../helper-functions/keyConversion.method';
 import {dataStore} from '../../service-layer/dataStore.service';
+import {setData} from '../../Service-Layer/inout/setData.service';
 
 @Component({
   selector: 'app-view-item-screen',
   templateUrl: './view-item-screen.component.html',
-  styleUrls: ['./view-item-screen.component.css','../../../assets/css/skeleton.css' ]
+  styleUrls: ['./view-item-screen.component.css','../../../assets/css/skeleton.css' ],
+  providers:[setData]
 })
 export class ViewItemScreenComponent implements OnInit {
   public _keyConverter = keyConverter
@@ -16,6 +18,7 @@ export class ViewItemScreenComponent implements OnInit {
   private getUser = keyConverter.getUser;
   private getProject = keyConverter.getProject;
   private getTask = keyConverter.getTask;
+  private static _setData: setData;
 
   //Externally Available
   public static visibleChangeTask: cardItem; 
@@ -24,10 +27,23 @@ export class ViewItemScreenComponent implements OnInit {
   public static visible: boolean = false;
   public static cardType: string;
   public static clearDown(){
+    ViewItemScreenComponent.saveOrNot();
     ViewItemScreenComponent.visible = false;
     ViewItemScreenComponent.visibleChangeTask = null;
     ViewItemScreenComponent.visibleProject = null;
     ViewItemScreenComponent.visibleUser = null;
+  }
+  public static saveOrNot(){
+    console.log("SaveOrNot")
+    if(this.checkCard(ViewItemScreenComponent.visibleChangeTask)){
+      console.log("SaveOrNot")
+    } else {
+      ViewItemScreenComponent._setData.update(
+        ViewItemScreenComponent.visibleChangeTask.id,
+        ViewItemScreenComponent.visibleChangeTask,
+        "Tasks"
+      ).subscribe()
+    }
   }
 
   //External - CT
@@ -94,15 +110,30 @@ export class ViewItemScreenComponent implements OnInit {
   //Internal - Generic  
   public _ds = ViewItemScreenComponent._ds;
 
+  private static checkCard(_newCard): boolean{
+    if(_newCard === ViewItemScreenComponent.visibleChangeTask){
+      return true
+    } else {
+      return false
+    }
+  }
+  private deleteItem(_id: number){
+    ViewItemScreenComponent._setData.delete(
+      _id
+    ).map((res)=>{
+      console.log(res);
+    }).subscribe()
+  }
+
   hide(){
     ViewItemScreenComponent.clearDown();
   }
   static view(){
     ViewItemScreenComponent.visible = true;
   }
-  constructor(){
-   
-   }
+  constructor(private __setData: setData){
+    ViewItemScreenComponent._setData = __setData;
+  }
 
   ngOnInit() {
   }

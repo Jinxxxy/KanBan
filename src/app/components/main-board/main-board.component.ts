@@ -30,22 +30,20 @@ export class MainBoardComponent implements OnInit {
   public _addNew = AddNewScreenComponent;
   public ds = dataStore;
   public _getData: getData;
-
-  //Dev Functions
-  public logOptions(
-    _any: any
-  ){
-    console.log(_any)
-  }
   private getUser = keyConverter.getUser;
   private getProject = keyConverter.getProject;
   private getTask = keyConverter.getTask;
-  private view(){
-    ViewItemScreenComponent.view();
+  public test(){
+    alert("save")
   }
-  private viewTask(_any: any){
-    alert(_any)
+  public saveAll(){
+
+    console.log(dataStore.cardList)
+    this._setData.saveAllCards(
+      dataStore.cardList
+    )
   }
+  
 
   constructor(private __getData: getData, private __setData: setData) {
     this._setData = __setData;
@@ -80,7 +78,7 @@ export class MainBoardComponent implements OnInit {
     this.teamList.push(teamTwo);
     this.teamList.push(teamThree);
     console.log(this.teamList);
-    
+  
 
     console.log(JSON.stringify(this.ds.swimLanesList))
     this._getData = __getData
@@ -108,13 +106,7 @@ export class MainBoardComponent implements OnInit {
       this.ds.projectList = responseObject.json()["projects"];
       dataStore.projectList = responseObject.json()["projects"];
       console.log(this.projectList);
-      this._setData.update(
-        1,
-        dataStore.cardList[1],
-        "Tasks"
-      ).map((resp: Response)=>{
-        console.log(resp)
-      }).subscribe();
+   
       ViewItemScreenComponent._ds = dataStore;
       AddNewScreenComponent.ds = dataStore;  
       dataStore.setPrototypeExtensions();

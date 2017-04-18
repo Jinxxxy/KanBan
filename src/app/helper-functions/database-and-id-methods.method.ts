@@ -9,8 +9,9 @@ export class dbAndDataMethods{
     }
     public static getId(_array: Array<cardItem>): number{
         console.log(_array)
-        var _sortedArray = dbAndDataMethods.sortByKey(_array, "project")
-        var idPlusOne: number = _sortedArray[0]["project"] + 1
+        var _sortedArray = dbAndDataMethods.sortByKey(_array, "id")
+        var idPlusOne: number = _sortedArray[_sortedArray.length]["id"] + 1
+        console.log(idPlusOne)
         return idPlusOne;
     }
 }

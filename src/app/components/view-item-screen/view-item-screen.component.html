@@ -9,20 +9,20 @@
           <option *ngFor="let status of _ds.swimLanesList" ngDefaultControl>{{status}}</option>
       </select><br>
       Owner:
-      <select class="owner-list list-item" (ngModel)="ct.owner" [ngModel]="getUser(ct.owner, _ds.ownersList).username">
+      <select class="owner-list list-item" [(ngModel)]="ct.owner">
           <option *ngFor="let owner of _ds.ownersList" ngDefaultControl>{{owner.username}}</option>
       </select><br>
       Project:
-      <select class="project-list list-item" (ngModel)="ct.project" [ngModel]="getProject(ct.project, _ds.projectList).name">
+      <select class="project-list list-item" [(ngModel)]="ct.project">
           <option *ngFor="let project of _ds.projectList" ngDefaultControl>{{project.name}}</option>
       </select><br>  
-       Description: <br><textarea name="Text1" cols="40" rows="5" [ngModel]="ct.description">  </textarea>
+       Description: <br><textarea name="Text1" cols="40" rows="5" [(ngModel)]="ct.description">  </textarea>
    </div>   
 
     <div *ngIf="_cardType === 'p'" class="task-card">
       <h1>{{_p_getProp("name")}}</h1>
       <h5>Children:</h5>
-      <ul>
+      <ul *ngIf="_p_getProp('children').length > 0">
         <li *ngFor="let child of _p_getProp('children')">
           {{_keyConverter.getTask(child, _ds.cardList).name}}
         </li>
@@ -30,10 +30,11 @@
       
     </div>
     <div *ngIf="_cardType === 'u'" class="task-card">
-      <h6>Username:</h6> <h5>{{ _u_getProp("username" ) }}</h5>
+      <h6>Username:</h6> <h5>{{ _u_getProp("username") }}</h5>
       <h6>Full Name:</h6> <h5>{{ _u_getProp("fullName") }}</h5>
       <h6>User ID:</h6> <h5>{{ _u_getProp("userId") }}</h5>
     </div>
     <input type="button" value="Close" (click)="hide()"/>
+    <input type="button" value="DELETE" (click)="deleteItem(ct.id)">
   </div>
 </div>

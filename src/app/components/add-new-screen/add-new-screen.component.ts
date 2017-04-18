@@ -32,12 +32,19 @@ export class AddNewScreenComponent implements OnInit {
     var _addNew: cardItem = new cardItem(
       dbAndDataMethods.getId(_ds.cardList),
       this.name,
-      3, 
-      1,
+      this.project,
+      this.owner,
       "Awaiting Approval"
       );
       _addNew.description = this.fullDescription;
-      AddNewScreenComponent.ds["cardList"].oPush(_addNew);
+      this._setData.insert(
+        _addNew
+      ).map(
+        (resp)=>{
+          console.log(resp)
+        }
+      ).subscribe();
+      AddNewScreenComponent.ds["cardList"].push(_addNew);
 
       //When DB is connected up then change the below to 
       //tear down the screen after the network call has returned

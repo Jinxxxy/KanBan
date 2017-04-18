@@ -4,17 +4,17 @@ import {projectModel} from '../Models/project.model'
 import {xArray} from './observableArray.method'
 
 export class keyConverter{
-    public static getUser(_id: number, ownersList: Array<userProfile> ): userProfile{
+    public static getUser(_id: string, ownersList: Array<userProfile> ): userProfile{
         var getUserProfile: userProfile = ownersList.filter((user: userProfile)=>{
-        return user["userId"] === _id;
+        return user.username === _id;
         })[0];
         return getUserProfile;
     };
-    public static getProject(_id: number, projectList: Array<projectModel>): projectModel{
+    public static getProject(_id: string, projectList: Array<projectModel>): projectModel{
         console.log(_id)
         console.log(projectList)
         var getProjectModel: projectModel = projectList.filter((proj: projectModel)=>{
-            return proj.projectId === _id
+            return proj.name === _id
         })[0];
         console.log(getProjectModel)
 

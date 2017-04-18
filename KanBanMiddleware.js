@@ -19,6 +19,7 @@ function getFindField (tableString){
     }
 }
 function getFindObject(requestObject){
+    console.log(requestObject)
     var findObject = {}
     var table = requestObject["tableReference"];
     var findField = getFindField(requestObject["tableReference"]);
@@ -47,6 +48,7 @@ function getUpdateObject(requestObject){
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    res.header("Access-Control-Allow-Methods", "GET, POST, DELETE");
     next();
 });
 
@@ -85,6 +87,7 @@ app.get("/", function(req, res) {
 app.post("", function(req, res) { 
     console.log(req.url)
     var wholeObject = JSON.parse(decodeURI(req.url.replace("/?","")))
+    console.log(wholeObject)
     if(wholeObject["requestType"] === "UPDATE"){
         console.log(wholeObject["tableReference"])
         var findObject = getFindObject(wholeObject);
@@ -92,12 +95,44 @@ app.post("", function(req, res) {
         db.get(wholeObject["tableReference"]).update(
             findObject,
             updateObject 
+        ).then((Resp)=>{
+            res.send(Resp)
+        }).catch(
+            res.send("ERROR")
+        )
+    } else if(wholeObject["requestType"] === "INSERT"){
+        db.get(wholeObject["tableReference"]).insert(
+            wholeObject["dataObject"]
+        ).then((res)=>{
+            res.send(
+                res
+            )
+        }).catch((err)=>{
+            res.send(
+                err
+            )
+        })
+    } else if(wholeObject["requestType"] === "DELETE"){
+        var findObject = getFindObject(wholeObject);
+        db.get(wholeObject["tableReference"]).remove(
+            findObject
+        ).then(
+            (resp)=>{
+                res.send(true);
+            }
+        ).catch(
+            (err)=>{
+                res.send(false);
+            }
         )
     }
 });
  /* serves all the static files */
 app.get(/^(.+)$/, function(req, res){ 
          
+});
+app.delete((req, res)=>{
+    console.log("RAWR" + req.url)
 });
 
 var port = process.env.PORT || 5000;
