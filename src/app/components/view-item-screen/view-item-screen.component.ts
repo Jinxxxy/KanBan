@@ -12,7 +12,7 @@ import {dataStore} from '../../service-layer/dataStore.service';
 })
 export class ViewItemScreenComponent implements OnInit {
   public _keyConverter = keyConverter
-  public static _ds: dataStore;
+  public static _ds = dataStore;
   private getUser = keyConverter.getUser;
   private getProject = keyConverter.getProject;
   private getTask = keyConverter.getTask;

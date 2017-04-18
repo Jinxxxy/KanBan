@@ -1,8 +1,8 @@
 import {Http, Response} from '@angular/http';
 import {Observable} from 'rxJs';
-import {serverRequest} from '../../models/server-request.model'
-import {serverConfig} from '../../config-files/serverdetails.config'
-import {Injectable} from '@angular/core'
+import {serverRequest} from '../../models/server-request.model';
+import {serverConfig} from '../../config-files/serverdetails.config';
+import {Injectable} from '@angular/core';
 
 @Injectable()
 

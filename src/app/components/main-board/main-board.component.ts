@@ -7,21 +7,25 @@ import {ViewItemScreenComponent} from '../view-item-screen/view-item-screen.comp
 import {dataStore} from '../../service-layer/dataStore.service'
 import {AddNewScreenComponent} from '../add-new-screen/add-new-screen.component'
 import {getData} from '../../service-layer/inout/getData.service';
+import {setData} from '../../service-layer/inout/setData.service';
 import 'rxjs/Rx';
 import {startUpMapper} from '../../service-layer/startupMapping.service'
+import {team} from '../../Models/team.model';
+import {Response} from '@angular/http'
 
 @Component({
   selector: 'app-main-board',
   templateUrl: './main-board.component.html',
   styleUrls: ['./main-board.component.css', '../../../assets/css/skeleton.css'],
-  providers: [getData]
+  providers: [getData, setData]
 })
 export class MainBoardComponent implements OnInit {
-
+  private _setData: setData;
   private swimLanesList: Array<string>;
   private cardList: Array<cardItem>;
   private ownersList: Array<userProfile>;
   private projectList: Array<projectModel>;
+  private teamList: Array<team>;
   public _ViewItemScreenComponent = ViewItemScreenComponent;
   public _addNew = AddNewScreenComponent;
   public ds = dataStore;
@@ -43,7 +47,8 @@ export class MainBoardComponent implements OnInit {
     alert(_any)
   }
 
-  constructor(private __getData: getData) {
+  constructor(private __getData: getData, private __setData: setData) {
+    this._setData = __setData;
     //Dev Data
     // var tempOne: cardItem = new cardItem(1,"Change TCS Config - Testing how this will affect the swim lane width", 1, 1, "Awaiting Development");
     // var tempTwo: cardItem = new cardItem(2,"Change DLR Config", 1, 2, "In Testing");
@@ -67,6 +72,15 @@ export class MainBoardComponent implements OnInit {
     // this.ds.projectList.push(projOne);
     // this.ds.projectList.push(projTwo);
     // this.ds.projectList.push(projThree);
+    var teamOne: team = new team("TL1 Team", "Development");
+    var teamTwo: team = new team("TL2 Team", "Testing");
+    var teamThree: team = new team("TL3 Team", "Analysis");
+    this.teamList = [];
+    this.teamList.push(teamOne);
+    this.teamList.push(teamTwo);
+    this.teamList.push(teamThree);
+    console.log(this.teamList);
+    
 
     console.log(JSON.stringify(this.ds.swimLanesList))
     this._getData = __getData
@@ -83,18 +97,28 @@ export class MainBoardComponent implements OnInit {
       this.cardList = responseObject.json()["cards"];
       this.ds.cardList = responseObject.json()["cards"];
       dataStore.cardList = responseObject.json()["cards"];
-      console.log(this.cardList)
+      console.log(this.cardList);
+      
       this.ownersList = responseObject.json()["users"];
       this.ds.ownersList = responseObject.json()["users"];
       dataStore.ownersList = responseObject.json()["users"];
-      console.log(this.ownersList)
+      console.log(this.ownersList);
       
       this.projectList = responseObject.json()["projects"];
       this.ds.projectList = responseObject.json()["projects"];
       dataStore.projectList = responseObject.json()["projects"];
-      console.log(this.projectList)
-    ViewItemScreenComponent._ds = dataStore;
-    AddNewScreenComponent.ds = dataStore;  
+      console.log(this.projectList);
+      this._setData.update(
+        1,
+        dataStore.cardList[1],
+        "Tasks"
+      ).map((resp: Response)=>{
+        console.log(resp)
+      }).subscribe();
+      ViewItemScreenComponent._ds = dataStore;
+      AddNewScreenComponent.ds = dataStore;  
+      dataStore.setPrototypeExtensions();
+    
 
 
     //Re-visit all of this************************

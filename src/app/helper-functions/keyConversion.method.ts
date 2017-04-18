@@ -1,6 +1,7 @@
 import {cardItem} from '../Models/card-item.model'
 import {userProfile} from '../Models/owners.model'
 import {projectModel} from '../Models/project.model'
+import {xArray} from './observableArray.method'
 
 export class keyConverter{
     public static getUser(_id: number, ownersList: Array<userProfile> ): userProfile{
@@ -19,7 +20,7 @@ export class keyConverter{
 
         return getProjectModel;
     };
-    public static getTask(_id: number, cardList: Array<cardItem>): cardItem{
+    public static getTask(_id: number, cardList: xArray<cardItem>): cardItem{
         var getTaskItem: cardItem = cardList.filter((card: cardItem)=>{
         return card.id === _id
         })[0]
